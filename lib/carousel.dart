@@ -79,6 +79,35 @@ class _AmazingCarouselState extends State<AmazingCarousel> {
       this._page * widget.childWidth - this._currentScrollingOffset >
           widget.childWidth * widget.scrollingThreshold;
 
+  double _getMaximiumWidth() =>
+      widget.childCount * widget.childWidth +
+      (widget.childCount - 1 > 0 ? widget.childCount - 1 : 0) *
+          widget.paddingBetweenChildren;
+
+  double _getScrolledWidth() =>
+      (this._page * widget.childWidth +
+          (this._page - 1 > 0 ? this._page - 1 : 0) *
+              widget.paddingBetweenChildren) +
+      widget.paddingHorizontal;
+
+  bool _isScrollingBackward(delta) => delta > 0;
+
+  bool _isTryingToScrollToTheEnd(delta) {
+    if (_isScrollingBackward(delta)) {
+      return false;
+    }
+
+    final maximumWidth = _getMaximiumWidth();
+    final scrolledWidth = _getScrolledWidth();
+    final maximumAcceptableWidth = maximumWidth - scrolledWidth;
+    final screenWidth =
+        MediaQuery.of(context).size.width - widget.paddingHorizontal;
+    return maximumAcceptableWidth < screenWidth;
+  }
+
+  bool _isScrolling(delta) =>
+      _currentScrollingOffset - delta != _currentScrollingOffset;
+
   void _onHorizontalDragEnd(DragEndDetails details) {
     var maybeNextPage = this._page;
     if (_isScrollingLeftward()) {
@@ -97,9 +126,9 @@ class _AmazingCarouselState extends State<AmazingCarousel> {
   }
 
   void _onHorizontalDragUpdate(DragUpdateDetails details) {
-    if (_currentScrollingOffset > details.primaryDelta &&
-        (_currentScrollingOffset - details.primaryDelta) !=
-            _currentScrollingOffset) {
+    if (!_isTryingToScrollToTheEnd(details.primaryDelta) &&
+        _currentScrollingOffset > details.primaryDelta &&
+        _isScrolling(details.primaryDelta)) {
       _currentScrollingOffset = _currentScrollingOffset - details.primaryDelta;
       _controller.jumpTo(
         _currentScrollingOffset,
@@ -134,16 +163,19 @@ class _AmazingCarouselState extends State<AmazingCarousel> {
       onHorizontalDragEnd: _onHorizontalDragEnd,
       onHorizontalDragUpdate: _onHorizontalDragUpdate,
       child: CustomScrollView(
-          shrinkWrap: true,
-          controller: _controller,
-          physics: NeverScrollableScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          slivers: <Widget>[
-            SliverList(
-              delegate: SliverChildBuilderDelegate(widget.itemBuilder),
-            )
-          ],
-        ),
+        shrinkWrap: true,
+        controller: _controller,
+        physics: NeverScrollableScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        slivers: <Widget>[
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              widget.itemBuilder,
+              childCount: widget.childCount,
+            ),
+          )
+        ],
+      ),
     );
   }
 }

@@ -141,7 +141,7 @@ class _AmazingCarouselState extends State<AmazingCarousel> {
       return widget.childWidth + widget.paddingHorizontal;
     }
 
-    return position * (widget.childWidth + widget.paddingBetweenChildren * 2);
+    return position * (widget.childWidth + widget.paddingBetweenChildren);
   }
 
   void _animateToOffset(double offset) {

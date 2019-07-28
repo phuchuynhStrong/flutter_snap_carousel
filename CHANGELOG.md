@@ -9,3 +9,6 @@
 ## [0.0.3] - July 28 2019
 - Remove usages of infinite list
 - Prevent scrolling beyond the end
+
+## [0.0.4] - July 28 2019
+- Fix wrong addition into current offset in `onHorizontalDragEnd`

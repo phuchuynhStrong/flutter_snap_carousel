@@ -12,3 +12,6 @@
 
 ## [0.0.4] - July 28 2019
 - Fix wrong addition into current offset in `onHorizontalDragEnd`
+
+## [0.0.5] - July 28 2019
+- Fix wrong addition into current offset in `onHorizontalDragEnd` (Pt. 2)

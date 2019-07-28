@@ -1,8 +1,8 @@
 name: amazing_carousel
-description: A new Flutter package project.
+description: An amazing Flutter Carousel which provide ability to show more than one UI component inside the Carousel's viewport
 version: 0.0.1
-author:
-homepage:
+author: phuchuynhStrong <phuchuynh.strong@gmail.com>
+homepage: https://github.com/phuchuynhStrong/amazing_flutter_carousel
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

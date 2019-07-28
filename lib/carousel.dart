@@ -137,10 +137,6 @@ class _AmazingCarouselState extends State<AmazingCarousel> {
   }
 
   double _getScrollingOffsetByChildPosition(int position) {
-    if (position == 1) {
-      return widget.childWidth + widget.paddingHorizontal;
-    }
-
     return position * (widget.childWidth + widget.paddingHorizontal - widget.paddingBetweenChildren);
   }
 

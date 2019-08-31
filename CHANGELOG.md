@@ -21,3 +21,8 @@
 
 ## [0.0.7] - July 28 2019
 - Remove wrong condition in calculation of current offset
+
+## [0.1.0] - August 31 2019
+- Improve scrolling to end conditions
+- Add `onSnap` callback
+- Add example projects

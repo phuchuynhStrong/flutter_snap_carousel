@@ -102,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Container(
               height: 200,
-              child: AmazingCarousel.multiple(
+              child: AmazingCarousel.createCarousel(
                 childCount: images.length,
                 childWidth: 200,
                 paddingHorizontal: 24,

@@ -1,14 +1,56 @@
-# amazing_carousel
+# Snap Carousel
 
-A new Flutter package project.
+An Flutter Snap Carousel which provide ability to show more than one UI component inside the Carousel's viewport. Pull requests are welcome
+
+## Features
+
+- Use to create Carousel with ability to snap at a position after scrolling
 
 ## Getting Started
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+Make sure you add the lib dependency in your flutter project.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+```
+dependencies:
+  snap_carousel: 0.1.0
+```
+
+Then you should run `flutter packages get` to update your packages in your IDE.
+
+## Example Project
+
+Checkout the project inside `example` folder.
+
+## Usage
+
+Use `createCarousel` factory function to create an Snap Carousel instance.
+```
+AmazingCarousel.createCarousel(
+  childCount: [CAROUSEL_LENGTH],
+  childWidth: [CAROUSEL_CHILD_WIDTH],
+  paddingHorizontal: [CAROUSEL_PADDING_HORIZONTAL],
+  paddingBetweenChildren: [PADDING_BETWEEN_ITEMS],
+  onSnap: (page) {
+    // Carousel has stop at page.
+  },
+  itemBuilder: (BuildContext context, int pos) {
+    // Build your carousel child.
+  },
+)
+```
+
+Properties:
+
+|Name|Usage|Type|
+|---|---|---|
+|`childCount`| Items count |`int`|
+|`childWidth`| Single item width |`double`|
+|`paddingHorizontal`| Horizontal padding of the Carousel |`double`|
+|`paddingBetweenChildren`| Horizontal padding between items |`double`|
+|`onSnap`| Callback when Carousel snap at a position |`ValueChanged<int>`|
+|`itemBuilder`| ItemBuilder which is function receive `BuildContext` and child's position for you to build Carousel's childrens |`Function`|
+
+## Support
+
+Email me at `phuchuynh.strong@gmail.com` for any support needed
+

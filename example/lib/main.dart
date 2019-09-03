@@ -1,4 +1,4 @@
-import 'package:amazing_carousel/carousel.dart';
+import 'package:snap_carousel/carousel.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());

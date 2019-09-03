@@ -1,3 +1,3 @@
-library amazing_carousel;
+library snap_carousel;
 
 export 'carousel.dart';
